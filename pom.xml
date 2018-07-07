@@ -51,17 +51,27 @@
 	<version>4.2.6.RELEASE</version>
 </dependency>
 
+	<dependency>
+		<groupId>c3p0</groupId>
+		<artifactId>c3p0</artifactId>
+		<version>0.9.1.2</version>
+	</dependency>
+
 <dependency>
 	<groupId>org.springframework</groupId>
 	<artifactId>spring-tx</artifactId>
 	<version>4.2.6.RELEASE</version>
 </dependency>
-
 <dependency>
-	<groupId>org.springframework</groupId>
-	<artifactId>spring-web</artifactId>
-	<version>4.2.6.RELEASE</version>
-</dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>4.0.4.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>4.0.4.RELEASE</version>
+		</dependency>
 
 <dependency>
 	<groupId>commons-dbcp</groupId>
@@ -76,13 +86,6 @@
 	<version>5.1.36</version>
 </dependency>
 
-<!-- SQL Server 2012 and 2014 Libraries -->
-<!-- <dependency>
-     <groupId>com.microsoft.sqlserver</groupId>
-     <artifactId>sqljdbc4</artifactId>
-     <version>3.0</version>
-</dependency>
- -->
 <dependency>
 	<groupId>org.codehaus.jackson</groupId>
 	<artifactId>jackson-mapper-asl</artifactId>
@@ -98,7 +101,7 @@
 <dependency>
 	<groupId>org.hibernate</groupId>
 	<artifactId>hibernate-core</artifactId>
-	<version>4.1.0.Final</version>
+	<version>5.1.0.Final</version>
 </dependency>
 
 <dependency>
