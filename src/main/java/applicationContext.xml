@@ -14,20 +14,21 @@
        http://www.springframework.org/schema/context/spring-context-3.0.xsd
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
-       
-       
+
+
 
 	<!-- Enable autowire -->
 	<context:annotation-config />
- 	<context:component-scan base-package="app" />
- 	
-	<mvc:annotation-driven /> 
-	<mvc:resources mapping="/resources/**" location="/resources/" />
-	
-	
+	<context:component-scan base-package="app" />
+
+	<mvc:annotation-driven />
+	<mvc:resources mapping="/resources/**"
+		location="/resources/" />
+
+
 	<import resource="classpath:dataSource.xml" />
-    <import resource="classpath:hibernate.cfg.xml" />
-    
+	<import resource="classpath:hibernate.cfg.xml" />
+
 
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
@@ -50,7 +51,8 @@
 	<bean id="dtoFactory" class="app.dto.DTOFactory">
 	</bean>
 
-	<bean id="repositoryLocator" class="app.repositories.RepositoryLocator"
+	<bean id="repositoryLocator"
+		class="app.repositories.RepositoryLocator"
 		factory-method="getInstance">
 		<property name="restaurantRepository">
 			<ref bean="restaurantRepository" />
@@ -61,14 +63,14 @@
 		<property name="restaurantRepository">
 			<ref bean="restaurantRepository" />
 		</property>
-		
+
 		<property name="dtoFactory">
 			<ref bean="dtoFactory" />
 		</property>
 	</bean>
 
-	<bean id="restaurantServiceTarget" class="app.services.impl.RestaurantServiceImpl"
-		parent="baseService">
+	<bean id="restaurantServiceTarget"
+		class="app.services.impl.RestaurantServiceImpl" parent="baseService">
 	</bean>
 
 	<bean id="restaurantService"
@@ -85,14 +87,14 @@
 			</props>
 		</property>
 	</bean>
-	
+
 	<bean id="serviceLocator" class="app.services.ServiceLocator"
 		factory-method="getInstance">
-		
+
 		<property name="restaurantService">
 			<ref bean="restaurantService" />
 		</property>
 	</bean>
 
-	
+
 </beans>
