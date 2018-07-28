@@ -17,6 +17,9 @@ public class Restaurant {
 	private Collection<Comment> comments;
 	private Collection<Manager> managers;
 
+	public Restaurant () {
+		
+	}
 	public Collection<Manager> getManagers() {
 		return managers;
 	}

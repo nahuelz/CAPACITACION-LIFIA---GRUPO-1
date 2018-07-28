@@ -2,6 +2,7 @@ package app.model;
 
 public class Adress {
 
+	private Integer idAdress;
 	private String country;
 	private String state;
 	private String city;
@@ -9,6 +10,18 @@ public class Adress {
 	private Integer altitude;
 	private String departament;
 
+	public Adress() {
+		
+	}
+	
+	public Integer getIdAdress() {
+		return idAdress;
+	}
+	
+	public void setIdAdress(Integer id) {
+		this.idAdress = id;
+	}
+	
 	public String getCountry() {
 		return country;
 	}

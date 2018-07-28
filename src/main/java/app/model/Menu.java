@@ -1,6 +1,7 @@
 package app.model;
 
 import java.util.Collection;
+import java.util.Set;
 
 public class Menu {
 
@@ -9,13 +10,13 @@ public class Menu {
 	private String description;
 	private Collection<String> caracterists;
 	private Integer photo;
-	private Collection<Dish> dishes;
+	private Set<Dish> dishes;
 
 	public void addDish(Dish aDish) {
 		dishes.add(aDish);
 	}
 
-	public Collection<Dish> getDishes() {
+	public Set<Dish> getDishes() {
 		return dishes;
 	}
 

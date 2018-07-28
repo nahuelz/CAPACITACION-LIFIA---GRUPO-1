@@ -4,7 +4,7 @@ import java.util.Collection;
 
 public class Dish {
 
-	private Integer id;
+	private Integer idDish;
 	private String name;
 	private String description;
 	private Integer photo;
@@ -22,12 +22,12 @@ public class Dish {
 		caracterists.remove(aString);
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getIdDish() {
+		return idDish;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdDish(Integer idDish) {
+		this.idDish = idDish;
 	}
 
 	public String getName() {
