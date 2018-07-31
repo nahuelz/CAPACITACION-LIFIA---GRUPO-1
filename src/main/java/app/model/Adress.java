@@ -1,8 +1,22 @@
 package app.model;
 
-public class Adress {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-	private Integer idAdress;
+@Entity
+public class Adress {
+	/**
+	 * *
+	 * 
+	 */
+	
+	@SuppressWarnings("unused")
+	private static final long serealVersionUID = 1L;
+	@Id
+	@GeneratedValue()
+	private Long id;
+	
 	private String country;
 	private String state;
 	private String city;
@@ -14,12 +28,12 @@ public class Adress {
 		
 	}
 	
-	public Integer getIdAdress() {
-		return idAdress;
+	public Long getId() {
+		return id;
 	}
 	
-	public void setIdAdress(Integer id) {
-		this.idAdress = id;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	public String getCountry() {
