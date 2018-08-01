@@ -3,16 +3,16 @@ package app.services;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import app.model.Adress;
+import app.dto.AdressDTO;
 
 
 @Service
 @Transactional
 public interface AdressService {
 	
-	Long createAdress(Adress adress);
-	Adress getAdress(Long id);
-	void updateAdress(Adress adress);
+	AdressDTO getAdress(Long id);
+	void updateAdress(AdressDTO adress);
+	void createAdress(String country, String state, String city, String street, Integer altitude, String departament);
 	
 	
 }

@@ -1,11 +1,15 @@
 package app.dao;
 
+import org.springframework.stereotype.Repository;
+
+import app.dto.AdressDTO;
 import app.model.Adress;
 
+@Repository
 public interface AdressDAO {
 	
-	Adress insertAdress(Adress adress);
-	Adress updateAdress(Adress adress);
-	Adress deleteAdress(Adress adress);
-	Adress getAdress(Long id);
+	AdressDTO updateAdress(AdressDTO adress);
+	AdressDTO deleteAdress(AdressDTO adress);
+	AdressDTO getAdress(Long id);
+	void createAdress(Adress adress);
 }
