@@ -1,6 +1,6 @@
 package app.model;
 
-public class Visitor extends TypeOfUser {
+public class Visitor extends State {
 	public Visitor(User aUser) {
 		super();
 		this.setUser(aUser);

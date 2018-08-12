@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Adress implements Serializable {
+public class Address implements Serializable {
 	/**
 	 * 
 	 */
@@ -25,11 +25,11 @@ public class Adress implements Serializable {
 	private Integer altitude;
 	private String departament;
 
-	public Adress() {
+	public Address() {
 		
 	}
 	
-	public Adress(String country, String state, String city, String street, Integer altitude,
+	public Address(String country, String state, String city, String street, Integer altitude,
 			String departament) {
 		// TODO Auto-generated constructor stub
 		this.setCountry(country);

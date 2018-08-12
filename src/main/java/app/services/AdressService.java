@@ -13,6 +13,7 @@ public interface AdressService {
 	AdressDTO getAdress(Long id);
 	void updateAdress(AdressDTO adress);
 	void createAdress(String country, String state, String city, String street, Integer altitude, String departament);
+	void editAdress(Long id, String country, String state, String city, String street, Integer altitude, String departament);
 	
 	
 }

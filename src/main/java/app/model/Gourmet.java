@@ -1,6 +1,6 @@
 package app.model;
 
-public class Gourmet extends TypeOfUser {
+public class Gourmet extends State {
 
 	public Gourmet(User aUser) {
 		super();

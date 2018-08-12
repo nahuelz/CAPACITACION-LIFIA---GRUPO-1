@@ -19,7 +19,6 @@ public class HibernateUtil implements ORMUtil {
 	@Override
 	public <T> Serializable create(T entity) {
 		// TODO Auto-generated method stub
-		System.out.println(entity);
 		return sessionFactory.getCurrentSession().save(entity);
 	}
 

@@ -1,10 +1,20 @@
 package app.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Comment {
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-	private Integer idComment;
+public class Comment implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue()
+	private Long id;
 	private String text;
 	private Date date;
 	
@@ -12,12 +22,12 @@ public class Comment {
 		
 	}
 	
-	public Integer getIdComment() {
-		return idComment;
+	public Long getId() {
+		return id;
 	}
 	
-	public void setIdComment(Integer id) {
-		this.idComment = id;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getText() {

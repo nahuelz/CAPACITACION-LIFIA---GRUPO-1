@@ -6,4 +6,5 @@ public interface ORMUtil {
 
 	<T> Serializable create(T entity);
 
+	
 }

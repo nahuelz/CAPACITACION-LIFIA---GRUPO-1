@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import app.dao.AdressDAO;
 import app.dto.AdressDTO;
-import app.model.Adress;
+import app.model.Address;
 import app.services.AdressService;
 
 @Service
@@ -33,10 +33,16 @@ public class AdressServiceImpl implements AdressService {
 	@Override
 	public void createAdress(String country, String state, String city, String street, Integer altitude,
 			String departament) {
-		Adress adress = new Adress(country, state, city, street, altitude, departament);
-		
-		System.out.println(adress);
+		Address adress = new Address(country, state, city, street, altitude, departament);
+	
 		adressDAO.createAdress(adress);
+		
+	}
+
+	@Override
+	public void editAdress(Long id, String country, String state, String city, String street, Integer altitude,
+			String departament) {
+		// TODO Auto-generated method stub
 		
 	}
 

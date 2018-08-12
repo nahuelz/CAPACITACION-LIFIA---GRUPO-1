@@ -1,15 +1,25 @@
 package app.model;
 
+import java.io.Serializable;
 import java.util.Collection;
 
-public class Restaurant {
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-	private Integer id;
+public class Restaurant implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue()
+	private Long id;
 	private String name;
 	private String description;
 	private String phone;
 	private String category;
-	private Adress adress;
+	private Address adress;
 	private Location location;
 	private Rank rank;
 	private Collection<Dish> dishes;
@@ -92,11 +102,11 @@ public class Restaurant {
 		this.setName(name);
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -108,11 +118,11 @@ public class Restaurant {
 		this.name = name;
 	}
 
-	public Adress getAdress() {
+	public Address getAdress() {
 		return adress;
 	}
 
-	public void setAdress(Adress adress) {
+	public void setAdress(Address adress) {
 		this.adress = adress;
 	}
 

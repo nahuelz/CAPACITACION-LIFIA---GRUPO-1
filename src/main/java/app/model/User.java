@@ -1,29 +1,44 @@
 package app.model;
 
-import java.util.Collection;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
-public class User {
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
-	private Integer id;
+@Entity
+public class User implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue()
+	private Long id;
 	private String name;
 	private String username;
 	private String email;
 	private String password;
-	private Void photo;
-	private Void gender;
-	private TypeOfUser type;
-	private Adress adrees;
-	private Collection<Comment> comments;
-	private Collection<User> friends;
-
-	public void addComment(Comment aComment) {
-		comments.add(aComment);
-	}
-
-	public Collection<Comment> getComments() {
-		return comments;
-	}
-
+	private String gender;
+	
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	private State userState;
+	
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private Set<User> friends = new HashSet<>();
+	
+	@OneToOne
+	@JoinColumn(name = "address_id")
+    private Address address;
+	
 	public void addFriend(User aFriend) {
 		friends.add(aFriend);
 	}
@@ -32,15 +47,15 @@ public class User {
 		friends.remove(aFriend);
 	}
 
-	public Collection<User> getFriends() {
+	public Set<User> getFriends() {
 		return friends;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -68,36 +83,28 @@ public class User {
 		this.password = password;
 	}
 
-	public Void getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(Void photo) {
-		this.photo = photo;
-	}
-
-	public Void getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(Void gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
-	public TypeOfUser getType() {
-		return type;
+	public State getType() {
+		return userState;
 	}
 
-	public void setType(TypeOfUser type) {
-		this.type = type;
+	public void setType(State userState) {
+		this.userState = userState;
 	}
 
-	public Adress getAdrees() {
-		return adrees;
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setAdrees(Adress adrees) {
-		this.adrees = adrees;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public String getUsername() {

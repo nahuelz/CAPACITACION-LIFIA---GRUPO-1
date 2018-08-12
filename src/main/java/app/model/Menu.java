@@ -1,16 +1,32 @@
 package app.model;
 
-import java.util.Collection;
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
-public class Menu {
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-	private Integer id;
+@Entity
+public class Menu implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue()
+	private Long id;
 	private String name;
 	private String description;
-	private Collection<String> caracterists;
 	private Integer photo;
-	private Set<Dish> dishes;
+	
+	@OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Dish> dishes = new HashSet<>();
+
 
 	public void addDish(Dish aDish) {
 		dishes.add(aDish);
@@ -20,27 +36,16 @@ public class Menu {
 		return dishes;
 	}
 
-	public void deleteDish(Dish aDish) {
+	public void removeDish(Dish aDish) {
 		dishes.remove(aDish);
+		aDish.setMenu(null);
 	}
 
-	public void addCaracterist(String aString) {
-		caracterists.add(aString);
-	}
-
-	public Collection<String> getCaracterists() {
-		return caracterists;
-	}
-
-	public void deleteCaracterist(String aString) {
-		caracterists.remove(aString);
-	}
-
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

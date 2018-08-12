@@ -1,33 +1,43 @@
 package app.model;
 
-import java.util.Collection;
+import java.io.Serializable;
 
-public class Dish {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-	private Integer idDish;
+@Entity
+public class Dish implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue()
+	private Long id;
 	private String name;
 	private String description;
 	private Integer photo;
-	private Collection<String> caracterists;
+	
+	@ManyToOne
+	private Menu menu;
 
-	public void addCaracterist(String aString) {
-		caracterists.add(aString);
+	public Long getId() {
+		return id;
 	}
 
-	public Collection<String> getCaracterists() {
-		return caracterists;
+	public void setId(Long id) {
+		this.id = id;
 	}
-
-	public void deleteCaracterist(String aString) {
-		caracterists.remove(aString);
+	
+	public Menu getMenu() {
+		return menu;
 	}
-
-	public Integer getIdDish() {
-		return idDish;
-	}
-
-	public void setIdDish(Integer idDish) {
-		this.idDish = idDish;
+	
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 
 	public String getName() {

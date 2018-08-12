@@ -1,6 +1,6 @@
 package app.model;
 
-public class Commensal extends TypeOfUser {
+public class Commensal extends State {
 
 	public Commensal(User aUser) {
 		super();
