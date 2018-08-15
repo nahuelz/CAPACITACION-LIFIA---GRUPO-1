@@ -8,7 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Menu implements Serializable {
@@ -24,7 +24,7 @@ public class Menu implements Serializable {
 	private String description;
 	private Integer photo;
 	
-	@OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private Set<Dish> dishes = new HashSet<>();
 
 
@@ -38,7 +38,6 @@ public class Menu implements Serializable {
 
 	public void removeDish(Dish aDish) {
 		dishes.remove(aDish);
-		aDish.setMenu(null);
 	}
 
 	public Long getId() {

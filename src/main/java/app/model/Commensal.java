@@ -2,6 +2,11 @@ package app.model;
 
 public class Commensal extends State {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	public Commensal(User aUser) {
 		super();
 		this.setUser(aUser);

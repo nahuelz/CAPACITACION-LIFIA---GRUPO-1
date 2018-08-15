@@ -1,24 +1,25 @@
-package app.model;
+package app.dto;
 
-import java.io.Serializable;
+import app.model.Dish;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity
-public class Dish implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue()
+public class DishDTO {
+	
 	private Long id;
 	private String name;
 	private String description;
 	private Integer photo;
+	
+	public DishDTO() {
+		
+	}
+	
+	public DishDTO(Dish dish) {
+		this.setId(dish.getId());
+		this.setName(dish.getName());
+		this.setDescription(dish.getDescription());
+		this.setPhoto(dish.getPhoto());
+		
+	}
 
 	public Long getId() {
 		return id;

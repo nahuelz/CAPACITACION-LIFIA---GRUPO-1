@@ -1,7 +1,16 @@
 package app.model;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+
+@Entity
+@DiscriminatorValue("Manager")
 public class Manager extends User {
 
 	/**
@@ -9,9 +18,14 @@ public class Manager extends User {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Collection<Restaurant> restaurants;
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private Set<Restaurant> restaurants = new HashSet<>();
 
-	public void addRestaurants(Restaurant aRestaurant) {
+	public Manager() {
+		
+	}
+	
+	public void addRestaurant(Restaurant aRestaurant) {
 		restaurants.add(aRestaurant);
 	}
 
@@ -19,7 +33,7 @@ public class Manager extends User {
 		return restaurants;
 	}
 
-	public void delteRestaurants(Restaurant aRestaurant) {
+	public void deleteRestaurant(Restaurant aRestaurant) {
 		restaurants.remove(aRestaurant);
 	}
 

@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,6 +17,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity
+@DiscriminatorColumn(name="user_type", 
+discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("Common")
 public class User implements Serializable {
 	/**
 	 * 
@@ -38,6 +44,11 @@ public class User implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "address_id")
     private Address address;
+	
+	
+	public User(){
+		
+	}
 	
 	public void addFriend(User aFriend) {
 		friends.add(aFriend);

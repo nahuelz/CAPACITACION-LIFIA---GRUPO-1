@@ -1,11 +1,19 @@
 package app.model;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
+@Entity
 public class Restaurant implements Serializable {
 	/**
 	 * 
@@ -19,18 +27,37 @@ public class Restaurant implements Serializable {
 	private String description;
 	private String phone;
 	private String category;
-	private Address adress;
-	private Location location;
-	private Rank rank;
-	private Collection<Dish> dishes;
-	private Collection<Menu> menues;
-	private Collection<Comment> comments;
-	private Collection<Manager> managers;
-
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "address_id")
+    private Address address;
+	
+	@ManyToMany(mappedBy = "restaurants")
+	private Set<Manager> managers = new HashSet<>();
+	
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Menu> menues = new HashSet<>();
+	
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Comment> comments = new HashSet<>();
+	
+	
+	//private Location location;
+	//private Rank rank;
+	
 	public Restaurant () {
 		
 	}
-	public Collection<Manager> getManagers() {
+	
+	public Restaurant (String name, String description, String phone, String category) {
+		this.setName(name);
+		this.setDescription(description);
+		this.setPhone(phone);
+		this.setCategory(category);		
+	}
+	
+
+	public Set<Manager> getManagers() {
 		return managers;
 	}
 
@@ -41,8 +68,12 @@ public class Restaurant implements Serializable {
 	public void deleteManager(Manager aManager) {
 		managers.remove(aManager);
 	}
+	
+	public void deleteComment(Comment aComment) {
+		comments.remove(aComment);
+	}
 
-	public Collection<Comment> getComments() {
+	public Set<Comment> getComments() {
 		return comments;
 	}
 
@@ -54,14 +85,15 @@ public class Restaurant implements Serializable {
 		menues.add(aMenu);
 	}
 
-	public Collection<Menu> getMenues() {
+	public Set<Menu> getMenues() {
 		return menues;
 	}
 
 	public void deleteMenu(Menu aMenu) {
 		menues.remove(aMenu);
 	}
-
+	
+	
 	public String getDescription() {
 		return description;
 	}
@@ -86,17 +118,23 @@ public class Restaurant implements Serializable {
 		this.category = category;
 	}
 
-	public void addDish(Dish aDish) {
-		dishes.add(aDish);
+	/*
+	public Location getLocation() {
+		return location;
 	}
 
-	public Collection<Dish> getDishes() {
-		return dishes;
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+	
+	public Rank getRank() {
+		return rank;
 	}
 
-	public void deleteDish(Dish aDish) {
-		dishes.remove(aDish);
+	public void setRank(Rank rank) {
+		this.rank = rank;
 	}
+	*/
 
 	public Restaurant(String name) {
 		this.setName(name);
@@ -119,26 +157,11 @@ public class Restaurant implements Serializable {
 	}
 
 	public Address getAdress() {
-		return adress;
+		return address;
 	}
 
-	public void setAdress(Address adress) {
-		this.adress = adress;
+	public void setAdress(Address address) {
+		this.address = address;
 	}
 
-	public Location getLocation() {
-		return location;
-	}
-
-	public void setLocation(Location location) {
-		this.location = location;
-	}
-
-	public Rank getRank() {
-		return rank;
-	}
-
-	public void setRank(Rank rank) {
-		this.rank = rank;
-	}
 }

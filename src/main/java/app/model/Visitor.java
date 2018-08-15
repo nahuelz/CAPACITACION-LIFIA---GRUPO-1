@@ -1,6 +1,11 @@
 package app.model;
 
 public class Visitor extends State {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Visitor(User aUser) {
 		super();
 		this.setUser(aUser);
