@@ -1,5 +1,6 @@
 package app.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,12 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	@Override
 	public List<RestaurantDTO> listRestaurants() {
 		// TODO Auto-generated method stub
-		return null;
+		List<Restaurant> restaurants = util.getAll(Restaurant.class);
+		List<RestaurantDTO> restaurantsDTO = new ArrayList<>();
+		for (Restaurant r : restaurants) {
+			restaurantsDTO.add(new RestaurantDTO(r));
+		}
+		return restaurantsDTO;
 	}
 
 	@Override

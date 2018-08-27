@@ -1,5 +1,6 @@
 package app.services.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 	RestaurantDAO restaurantDAO;
 
 	@Override
-	public Set<RestaurantDTO> listRestaurants() {
+	public List<RestaurantDTO> listRestaurants() {
 		// TODO Auto-generated method stub
-		return null;
+		return restaurantDAO.listRestaurants();
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package app.services;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import app.dto.RestaurantDTO;
 @Transactional
 public interface RestaurantService {
 	
-	Set<RestaurantDTO> listRestaurants();
+	List<RestaurantDTO> listRestaurants();
 	RestaurantDTO getRestaurant(Long id);
 	void deleteRestaurant(Long id);
 	void updateRestaurant(Long id, String name, String description, String phone, String category, String country, String state, String city, String street, Integer altitude, String departament);

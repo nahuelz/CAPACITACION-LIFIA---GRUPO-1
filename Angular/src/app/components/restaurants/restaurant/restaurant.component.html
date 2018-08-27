@@ -1,0 +1,137 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Restaurant A</td>
+      <td>Una Direccion A</td>
+      <td><button  type="button" class="btn btn-primary fa fa-eye"></button></td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Restaurant B</td>
+      <td>Una Direccion B</td>
+      <td><button  type="button" class="btn btn-primary fa fa-eye" data-toggle="modal" data-target="#exampleModal"></button></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Restaurant B</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<div class="form-group">
+                <div class="">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-6 control-label "><strong><em>Category</em></strong></label>
+                            <div class="col-md-12">
+								<p class="text-extra-large">Una categoria</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-6 control-label "><strong><em>Description</em></strong></label>
+                            <div class="col-md-12">
+                                <div class="input-group margin-bottom-sm">
+                                    <p class="text-extra-large">Una descripcion</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-6 control-label "><strong><em>Phone</em></strong></label>
+                            <div class="col-md-12">
+                                <div class="input-group margin-bottom-sm">
+                                    <p class="text-extra-large">0303456</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-6 control-label "><strong><em>Country</em></strong></label>
+                            <div class="col-md-6">
+                                <div class="input-group margin-bottom-sm">
+                                    <p class="text-extra-large">Argentina</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-6 control-label "><strong><em>State</em></strong></label>
+                            <div class="col-md-6">
+                                <div class="input-group margin-bottom-sm">
+                                    <p class="text-extra-large">Buenos Aires</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-6 control-label "><strong><em>City</em></strong></label>
+                            <div class="col-md-6">
+                                <div class="input-group margin-bottom-sm">
+                                    <p class="text-extra-large">La Plata</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-6 control-label "><strong><em>Street</em></strong></label>
+                            <div class="col-md-6">
+                                <div class="input-group margin-bottom-sm">
+                                    <p class="text-extra-large">Calle 57</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-6 control-label "><strong><em>Altitude</em></strong></label>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <p class="text-extra-large">123</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ul>
+  <li *ngFor="let res of restaurants.restaurants">
+    {{res.nombre}}
+  </li>
+</ul>
+
+<script type="text/javascript">
+	
+	$('#myModal').on('shown.bs.modal', function () {
+		$('#myInput').trigger('focus')
+	})
+</script>

@@ -1,12 +1,6 @@
 package app.dto;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import app.model.Address;
-import app.model.Comment;
-import app.model.Manager;
-import app.model.Menu;
 import app.model.Restaurant;
 
 public class RestaurantDTO {
@@ -17,10 +11,7 @@ public class RestaurantDTO {
 	private String phone;
 	private String category;
 	private Address address;
-	private Set<Manager> managers = new HashSet<>();
-	private Set<Menu> menues = new HashSet<>();
-	private Set<Comment> comments = new HashSet<>();
-	
+
 	public RestaurantDTO() {
 		
 	}
@@ -36,9 +27,6 @@ public class RestaurantDTO {
 		this.setPhone(restaurant.getPhone());
 		this.setCategory(restaurant.getCategory());
 		this.setAddress(restaurant.getAdress());
-		this.setManagers(restaurant.getManagers());
-		this.setMenues(restaurant.getMenues());
-		this.setComments(restaurant.getComments());
 	}
 
 	public Long getId() {
@@ -87,31 +75,6 @@ public class RestaurantDTO {
 
 	public void setAddress(Address address) {
 		this.address = address;
-	}
-
-	public Set<Manager> getManagers() {
-		return managers;
-	}
-
-	public void setManagers(Set<Manager> managers) {
-		this.managers = managers;
-	}
-
-	public Set<Menu> getMenues() {
-		return menues;
-	}
-
-	public void setMenues(Set<Menu> menues) {
-		this.menues = menues;
-	}
-
-	public Set<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(Set<Comment> comments) {
-		this.comments = comments;
-	}
-	
+	}	
 
 }
