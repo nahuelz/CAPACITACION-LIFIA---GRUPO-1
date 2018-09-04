@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import app.dto.DishDTO;
+
 @Entity
 public class Dish implements Serializable {
 	/**
@@ -18,7 +20,13 @@ public class Dish implements Serializable {
 	private Long id;
 	private String name;
 	private String description;
-	private Integer photo;
+	private String photo;
+
+	public Dish(String name, String description, String photo) {
+		this.setName(name);
+		this.setDescription(description);
+		this.setPhoto(photo);
+	}
 
 	public Long getId() {
 		return id;
@@ -44,12 +52,19 @@ public class Dish implements Serializable {
 		this.description = description;
 	}
 
-	public Integer getPhoto() {
+	public String getPhoto() {
 		return photo;
 	}
 
-	public void setPhoto(Integer photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+
+	public void update(DishDTO dishDTO) {
+		this.setName(dishDTO.getName());
+		this.setDescription(dishDTO.getDescription());
+		this.setPhoto(dishDTO.getPhoto());
+		
 	}
 
 }

@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import app.dto.MenuDTO;
+
 @Entity
 public class Menu implements Serializable {
 	/**
@@ -22,16 +24,16 @@ public class Menu implements Serializable {
 	private Long id;
 	private String name;
 	private String description;
-	private Integer photo;
+	private String photo;
 	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Dish> dishes = new HashSet<>();
 
 	public Menu () {
 		
 	}
 	
-	public Menu(String name, String description, Integer photo) {
+	public Menu(String name, String description, String photo) {
 		this.setName(name);
 		this.setDescription(description);
 		this.setPhoto(photo);
@@ -73,12 +75,19 @@ public class Menu implements Serializable {
 		this.description = description;
 	}
 
-	public Integer getPhoto() {
+	public String getPhoto() {
 		return photo;
 	}
 
-	public void setPhoto(Integer photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+
+	public void update(MenuDTO menuDTO) {
+		this.setName(menuDTO.getName());
+		this.setDescription(menuDTO.getDescription());
+		this.setPhoto(menuDTO.getPhoto());
+		
 	}
 
 }

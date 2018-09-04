@@ -1,0 +1,126 @@
+<div class="container" style="margin-top:30px">
+    <div class="row">
+        <div class="col-12">
+            <div [hidden]="submitted">
+                <h1>Edit Restaurant</h1>
+                <form (ngSubmit)="onSubmit()" #restaurantForm="ngForm">
+
+                    <!-- Inputs -->
+                    <div class="row">
+
+                        <!-- Restaurant inputs -->
+                        <div class="col-6">
+                            <h3>Restaurant</h3>
+                            <!-- NAME -->
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name"required [(ngModel)]="restaurantEdit.name" name="name" #name="ngModel" value="{{restaurantEdit.name}}">
+
+                                <div [hidden]="name.valid || name.pristine" class="alert alert-danger"> 
+                                    Name is required
+                                </div>
+                            </div>
+
+                            <!--DESCRIPTION -->
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <input type="text" class="form-control" id="description" required [(ngModel)]="restaurantEdit.description" name="description" #description="ngModel" value="{{restaurantEdit.description}}">
+                                <div [hidden]="description.valid || description.pristine" class="alert alert-danger">
+                                    description is required
+                                </div>
+                            </div>
+
+                            <!--CATEGORY -->
+                            <div class="form-group">
+                                <label for="category">Category</label>
+                                <input type="text" class="form-control" id="category" required
+                                [(ngModel)]="restaurantEdit.category" name="category"
+                                #category="ngModel" value="{{restaurantEdit.category}}">
+                                <div [hidden]="category.valid || category.pristine" class="alert alert-danger">
+                                    category is required
+                                </div>
+                            </div>
+
+                            <!--PHONE -->
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="text" class="form-control" id="phone" required [(ngModel)]="restaurantEdit.phone" name="phone" #phone="ngModel" value="{{restaurantEdit.phone}}">
+                                <div [hidden]="phone.valid || phone.pristine" class="alert alert-danger">
+                                    phone is required
+                                </div>
+                            </div>
+
+                            <!--PHOTO URL -->
+                            <div class="form-group">
+                                <label for="imagen">Photo Url</label>
+                                <input type="text" class="form-control" id="imagen" required [(ngModel)]="restaurantEdit.imagen" name="imagen" #imagen="ngModel" value="{{restaurantEdit.imagen}}">
+                                <div [hidden]="imagen.valid || imagen.pristine" class="alert alert-danger">
+                                    photo is required
+                                </div>
+                                <img src={{restaurantEdit.imagen}} class="img-thumbnail" alt="Cinque Terre" style="height: 250px; margin-left: 0px;">
+                            </div>
+                        </div>
+
+                        <!-- Address inputs -->
+                        <div class="col-6">
+                            <h3>Address</h3>
+
+                            <!--COUNTRY -->
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <input type="text" class="form-control" id="country" required [(ngModel)]="restaurantEdit.address.country" name="country" #country="ngModel" value="{{restaurantEdit.address.country}}">
+                                <div [hidden]="country.valid || country.pristine" class="alert alert-danger">
+                                    country is required
+                                </div>
+                            </div>
+
+                            <!--STATE -->
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input type="text" class="form-control" id="state" required [(ngModel)]="restaurantEdit.address.state" name="state" #state="ngModel" value="{{restaurantEdit.address.state}}">
+                                <div [hidden]="state.valid || state.pristine" class="alert alert-danger">
+                                    state is required
+                                </div>
+                            </div>
+
+
+                            <!--CITY -->
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control" id="city" required [(ngModel)]="restaurantEdit.address.city" name="city" #city="ngModel" value="{{restaurantEdit.address.city}}">
+                                <div [hidden]="city.valid || city.pristine" class="alert alert-danger">
+                                    city is required
+                                </div>
+                            </div>
+
+                            <!--STREET -->
+                            <div class="form-group">
+                                <label for="street">Street</label>
+                                <input type="text" class="form-control" id="street" required [(ngModel)]="restaurantEdit.address.street" name="street" #street="ngModel" value="{{restaurantEdit.address.street}}">
+                                <div [hidden]="street.valid || street.pristine" class="alert alert-danger">
+                                    street is required
+                                </div>
+                            </div>
+
+                            <!--ALTITUDE -->
+                            <div class="form-group">
+                                <label for="altitude">Altitude</label>
+                                <input type="text" class="form-control" id="altitude" required [(ngModel)]="restaurantEdit.address.altitude" name="altitude" #altitude="ngModel" value="{{restaurantEdit.address.altitude}}">
+                                <div [hidden]="altitude.valid || altitude.pristine" class="alert alert-danger">
+                                    altitude is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Return, Sumbit buttons -->
+                    <div style=" float:  right;">
+                        <button type="button" class="btn btn-outline-primary"  style="margin: 20px;"[routerLink]="['/detail', restaurantEdit.id]">Return</button>
+                        <button type="submit" class="btn btn-outline-success" (click)="getDataPost()">Edit Restaurant</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+  </div>
+</div>
+

@@ -8,9 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import app.dao.HibernateUtil;
 import app.dao.RestaurantDAO;
+import app.dto.DishDTO;
 import app.dto.MenuDTO;
 import app.dto.RestaurantDTO;
-import app.model.Address;
+import app.model.Dish;
 import app.model.Menu;
 import app.model.Restaurant;
 
@@ -22,21 +23,18 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	
 	@Override
 	public void createRestaurant(Restaurant restaurant) {
-		// TODO Auto-generated method stub
 		util.create(restaurant);
 		
 	}
 
 	@Override
 	public RestaurantDTO getRestaurant(Long id) {
-		// TODO Auto-generated method stub
 		RestaurantDTO restaurantDTO = new RestaurantDTO(util.get(Restaurant.class, id));
 		return restaurantDTO;
 	}
 
 	@Override
 	public List<RestaurantDTO> listRestaurants() {
-		// TODO Auto-generated method stub
 		List<Restaurant> restaurants = util.getAll(Restaurant.class);
 		List<RestaurantDTO> restaurantsDTO = new ArrayList<>();
 		for (Restaurant r : restaurants) {
@@ -52,31 +50,14 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	}
 
 	@Override
-	public void updateRestaurant(Long idRestaurant, String name, String description, String phone, String category,
-			String country, String state, String city, String street, Integer altitude, String departament) {
-		// TODO Auto-generated method stub
-		
-		Restaurant restaurant = util.get(Restaurant.class, idRestaurant);
-		restaurant.setName(name);
-		restaurant.setDescription(description);
-		restaurant.setPhone(phone);
-		restaurant.setCategory(category);
-		
-		Address address = restaurant.getAdress();
-		address.setCountry(country);
-		address.setState(state);
-		address.setCity(city);
-		address.setStreet(street);
-		address.setAltitude(altitude);
-		address.setDepartament(departament);
-		
+	public void updateRestaurant(RestaurantDTO restaurantDTO) {
+		Restaurant restaurant = util.get(Restaurant.class, restaurantDTO.getId());
+		restaurant.update(restaurantDTO);		
 		util.update(restaurant);
-		
 	}
 	
 	@Override
-	public void createMenu(Menu menu, Long idRestaurant) {
-		// TODO Auto-generated method stub
+	public void addMenu(Menu menu, Long idRestaurant) {
 		Restaurant restaurant = util.get(Restaurant.class, idRestaurant);
 		restaurant.addMenu(menu);
 		util.update(restaurant);
@@ -84,21 +65,58 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	}
 
 	@Override
-	public MenuDTO detailMenu(Long idMenu) {
-		// TODO Auto-generated method stub
-		MenuDTO menuDTO = new MenuDTO(util.get(Menu.class, idMenu));
+	public MenuDTO getMenu(Long idMenu) {
+		Menu menu = util.get(Menu.class, idMenu);		
+		MenuDTO menuDTO = new MenuDTO(menu);
 		return menuDTO;
 	}
 
 	@Override
-	public void updateMenu(Long idMenu, String name, String description, Integer photo) {
-		// TODO Auto-generated method stub
-		
-		Menu menu = util.get(Menu.class, idMenu);
-		menu.setName(name);
-		menu.setDescription(description);
-		menu.setPhoto(photo);
+	public void updateMenu(MenuDTO menuDTO) {
+		Menu menu = util.get(Menu.class, menuDTO.getId());
+		menu.update(menuDTO);
 		util.update(menu);
+		
+	}
+
+	@Override
+	public List<MenuDTO> listMenues(Long idRestaurant) {
+		Restaurant restaurant = util.get(Restaurant.class, idRestaurant);
+		List<MenuDTO> menuDTO = new ArrayList<>();
+		for (Menu m : restaurant.getMenues()) {
+			menuDTO.add(new MenuDTO(m));			
+		}
+		return menuDTO;
+	}
+	
+	@Override
+	public List<DishDTO> listDishes(Long idMenu) {
+		Menu menu = util.get(Menu.class, idMenu);
+		List<DishDTO> dishDTO = new ArrayList<>();
+		for (Dish d : menu.getDishes()) {
+			dishDTO.add(new DishDTO(d));			
+		}
+		return dishDTO;
+	}
+
+	@Override
+	public void addDish(Dish dish, Long idMenu) {
+		Menu menu = util.get(Menu.class, idMenu);
+		menu.addDish(dish);
+		util.update(menu);
+		
+	}
+
+	@Override
+	public DishDTO getDish(Long idDish) {
+		return(util.get(DishDTO.class, idDish));				
+	}
+
+	@Override
+	public void updateDish(DishDTO dishDTO) {
+		Dish dish = util.get(Dish.class, dishDTO.getId());
+		dish.update(dishDTO);
+		util.update(dish);
 		
 	}
 

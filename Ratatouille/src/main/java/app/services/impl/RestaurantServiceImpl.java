@@ -1,7 +1,6 @@
 package app.services.impl;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +10,7 @@ import app.dto.DishDTO;
 import app.dto.MenuDTO;
 import app.dto.RestaurantDTO;
 import app.model.Address;
+import app.model.Dish;
 import app.model.Menu;
 import app.model.Restaurant;
 import app.services.RestaurantService;
@@ -23,13 +23,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 	@Override
 	public List<RestaurantDTO> listRestaurants() {
-		// TODO Auto-generated method stub
 		return restaurantDAO.listRestaurants();
 	}
 
 	@Override
 	public RestaurantDTO getRestaurant(Long id) {
-		// TODO Auto-generated method stub
 		return restaurantDAO.getRestaurant(id);
 	}
 
@@ -40,60 +38,33 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public void updateRestaurant(Long id, String name, String description, String phone, String category,
-			String country, String state, String city, String street, Integer altitude, String departament) {
-		/*
-		 * getRestaurant retorna algo de tipo RestaurantDTO, por lo tanto, no puedo hacer getRestaurant para actualizarlo en el service
-		 * solucion: envio los parametros al dao, obtengo el restaurant lo actualizo y hago update. esta bien?¡?¡?¡
-		 */
-		
-		restaurantDAO.updateRestaurant(id, name, description, phone, category, country, state, city, street, altitude, departament);
-		
-	}
-
-	@Override
-	public void createRestaurant(String name, String description, String phone, String category, String country,
+	public void createRestaurant(String name, String description, String phone, String category, String imagen, String country,
 			String state, String city, String street, Integer altitude, String departament) {
-		// TODO Auto-generated method stub
 		
-		Restaurant restaurant = new Restaurant(name, description, phone, category);
-		
-		Address address = new Address(country, state, city, street, altitude, departament);
-		
-		restaurant.setAdress(address);
-		
+		Restaurant restaurant = new Restaurant(name, description, phone, category, imagen);
+		Address address = new Address(country, state, city, street, altitude, departament);		
+		restaurant.setAdress(address);		
 		restaurantDAO.createRestaurant(restaurant);
 		
 	}
 
 	@Override
-	public Set<MenuDTO> listMenues(Long idRestaurant) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MenuDTO> listMenues(Long idRestaurant) {
+
+		return restaurantDAO.listMenues(idRestaurant);
 	}
 
 	@Override
-	public MenuDTO getMenu(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public void deleteMenu(Long id) {}
 
 	@Override
-	public void deleteMenu(Long id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Set<DishDTO> listDishes(Long idMenu) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<DishDTO> listDishes(Long idMenu) {
+		return restaurantDAO.listDishes(idMenu);
 	}
 
 	@Override
 	public DishDTO getDish(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return restaurantDAO.getDish(id);
 	}
 
 	@Override
@@ -103,41 +74,36 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public void updateDish(Long id, String name, String description, Integer photo) {
-		// TODO Auto-generated method stub
+	public void updateDish(Long id, String name, String description, String photo) {}
+
+	@Override
+	public void addDish(Long id, String name, String description, String photo) {
+		Dish dish = new Dish(name, description, photo);
+		restaurantDAO.addDish(dish, id);
 		
 	}
 
 	@Override
-	public void createDish(Long id, String name, String description, Integer photo) {
-		// TODO Auto-generated method stub
+	public void addMenu(Long idRestaurant, String name, String description, String photo) {
+		Menu menu = new Menu (name, description, photo);		
+		restaurantDAO.addMenu(menu, idRestaurant);		
+	}
+
+	@Override
+	public MenuDTO getMenu(Long idMenu) {
+		return restaurantDAO.getMenu(idMenu);
 		
 	}
 
 	@Override
-	public void createMenu(Long idRestaurant, String name, String description, Integer photo) {
-		// TODO Auto-generated method stub
-		Menu menu = new Menu (name, description, photo);
-		
-		restaurantDAO.createMenu(menu, idRestaurant);
-		
+	public void updateMenu(Long idMenu, String name, String description, String photo) {
+		MenuDTO menuDTO = new MenuDTO(idMenu, name, description, photo);
+		restaurantDAO.updateMenu(menuDTO);		
 	}
 
 	@Override
-	public MenuDTO detailMenu(Long idMenu) {
-		// TODO Auto-generated method stub
-		
-		return restaurantDAO.detailMenu(idMenu);
-		
-	}
-
-	@Override
-	public void updateMenu(Long idMenu, String name, String description, Integer photo) {
-		// TODO Auto-generated method stub
-		
-		restaurantDAO.updateMenu(idMenu, name, description, photo);
-		
-		
+	public void updateRestaurant(RestaurantDTO restaurantDTO) {		
+		restaurantDAO.updateRestaurant(restaurantDTO);		
 	}
 
 }

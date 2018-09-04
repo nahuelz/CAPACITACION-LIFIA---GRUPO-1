@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import app.dto.RestaurantDTO;
+
 @Entity
 public class Restaurant implements Serializable {
 	/**
@@ -27,6 +29,7 @@ public class Restaurant implements Serializable {
 	private String description;
 	private String phone;
 	private String category;
+	private String imagen;
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "address_id")
@@ -49,11 +52,12 @@ public class Restaurant implements Serializable {
 		
 	}
 	
-	public Restaurant (String name, String description, String phone, String category) {
+	public Restaurant (String name, String description, String phone, String category, String imagen) {
 		this.setName(name);
 		this.setDescription(description);
 		this.setPhone(phone);
 		this.setCategory(category);		
+		this.setImagen(imagen);
 	}
 	
 
@@ -163,5 +167,30 @@ public class Restaurant implements Serializable {
 	public void setAdress(Address address) {
 		this.address = address;
 	}
+	
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+	public void update(RestaurantDTO restaurantDTO) {
+		this.setName(restaurantDTO.getName());
+		this.setDescription(restaurantDTO.getDescription());
+		this.setPhone(restaurantDTO.getPhone());
+		this.setCategory(restaurantDTO.getCategory());
+		
+		Address address = this.getAdress();
+		address.setCountry(restaurantDTO.getAddress().getCountry());
+		address.setState(restaurantDTO.getAddress().getState());
+		address.setCity(restaurantDTO.getAddress().getCity());
+		address.setStreet(restaurantDTO.getAddress().getStreet());
+		address.setAltitude(restaurantDTO.getAddress().getAltitude());
+		address.setDepartament(restaurantDTO.getAddress().getDepartament());
+		
+	}
+
 
 }

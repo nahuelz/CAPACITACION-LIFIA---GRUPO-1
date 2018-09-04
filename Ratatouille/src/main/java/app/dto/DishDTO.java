@@ -7,7 +7,7 @@ public class DishDTO {
 	private Long id;
 	private String name;
 	private String description;
-	private Integer photo;
+	private String photo;
 	
 	public DishDTO() {
 		
@@ -45,11 +45,11 @@ public class DishDTO {
 		this.description = description;
 	}
 
-	public Integer getPhoto() {
+	public String getPhoto() {
 		return photo;
 	}
 
-	public void setPhoto(Integer photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 

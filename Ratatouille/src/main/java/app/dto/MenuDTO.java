@@ -11,19 +11,21 @@ public class MenuDTO {
 	private Long id;
 	private String name;
 	private String description;
-	private Integer photo;
+	private String photo;
 	private Set<Dish> dishes = new HashSet<>();
 	
-	public MenuDTO() {
-		
+	public MenuDTO(Long id, String name, String description, String photo) {
+		this.setId(id);
+		this.setName(name);
+		this.setDescription(description);
+		this.setPhoto(photo);
 	}
 	
 	public MenuDTO(Menu menu) {
 		this.setId(menu.getId());
 		this.setName(menu.getName());
 		this.setDescription(menu.getDescription());
-		this.setPhoto(menu.getPhoto());
-		this.setDishes(menu.getDishes());
+		this.setPhoto(menu.getPhoto());;
 	}
 	
 	public Long getId() {
@@ -44,10 +46,10 @@ public class MenuDTO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Integer getPhoto() {
+	public String getPhoto() {
 		return photo;
 	}
-	public void setPhoto(Integer photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 	public Set<Dish> getDishes() {

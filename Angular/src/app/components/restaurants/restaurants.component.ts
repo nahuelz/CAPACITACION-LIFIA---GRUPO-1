@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestaurantService } from '../../services/restaurant.service';
 
 @Component({
   selector: 'app-restaurants',
@@ -9,7 +10,10 @@ export class RestaurantsComponent implements OnInit {
 
   constructor() { }
 
+
   ngOnInit() {
+
+
   }
 
 }

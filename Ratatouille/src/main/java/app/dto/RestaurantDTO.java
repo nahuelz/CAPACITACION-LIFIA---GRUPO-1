@@ -10,6 +10,7 @@ public class RestaurantDTO {
 	private String description;
 	private String phone;
 	private String category;
+	private String imagen;
 	private Address address;
 
 	public RestaurantDTO() {
@@ -26,7 +27,17 @@ public class RestaurantDTO {
 		this.setDescription(restaurant.getDescription());
 		this.setPhone(restaurant.getPhone());
 		this.setCategory(restaurant.getCategory());
+		this.setImagen(restaurant.getImagen());
 		this.setAddress(restaurant.getAdress());
+		
+	}
+	
+	public String getImagen() {
+		return imagen;
+	}
+	
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
 	public Long getId() {
